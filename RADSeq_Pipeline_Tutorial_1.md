@@ -64,7 +64,7 @@ AAGACGGA
 
 ```{bash}
 module load perl
-perl flip_trim_160301.pl <pat_to_file_contining_barcodes.txt> <path_to_R1.fastq file> <path_to_R2.fastq file> <path_and_name_of_file_for_R1_flipped.fastq> <path_and_name_of_file_for_R2_flipped.fastq> -> <name_of_flipped_output.txt>
+perl flip_trim_160301.pl <path_to_file_contining_barcodes.txt> <path_to_R1.fastq file> <path_to_R2.fastq file> <path_and_name_of_file_for_R1_flipped.fastq> <path_and_name_of_file_for_R2_flipped.fastq> -> <name_of_flipped_output.txt>
 ````
 ```
 The output text file will contain how many reads it found per barcode
@@ -100,7 +100,7 @@ PCR can stochasticaly amplify one of the alleles more than the other, sometimes 
 
 ```{bash}
 module load stacks
-clone_filter -P -p <path_to_flipped_R1andR2_fastq_files> -i gzfastq -o <path_to_output_directory> &> <path_to_output_directory>clone_filter.log
+clone_filter -P -p <path_to_flipped_R1andR2_fastq_files> -i fastq -o <path_to_output_directory> &> <path_to_output_directory>clone_filter.log
 ```
 ###Process_radtags
 * Make a new directory for process radtags
