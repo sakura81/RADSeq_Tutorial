@@ -66,7 +66,8 @@ AAGACGGA
 module load perl
 perl flip_trim_160301.pl <pat_to_file_contining_barcodes.txt> <path_to_R1.fastq file> <path_to_R2.fastq file> <path_and_name_of_file_for_R1_flipped.fastq> <path_and_name_of_file_for_R2_flipped.fastq> -> <name_of_flipped_output.txt>
 ````
->The output text file will contain how many reads it found per barcode
+```
+The output text file will contain how many reads it found per barcode
 AAACATCG	3532784
 AACAACCA	584984
 AACCGAGA	2493033
