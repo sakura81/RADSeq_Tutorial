@@ -125,7 +125,7 @@ ACAAGCTA	WOLF5
 
 ```{bash}
 module load stacks
-process_radtags -P -c -q -e sbfI -b <path_to_barcode-sample>file.txt> -i fastq -1 <path_to_flipped_R1.fastq> -2 <path_to_flipped_R2.fastq> -o <path_to_where_you_want_output_files_sent> -y gzfastq
+process_radtags -P -c -q -e sbfI -b <path_to_barcode-sample>file.txt> -i fastq -1 <path_to_clone_filtered_flipped_R1.fastq> -2 <path_to_clone_filtered_flipped_R2.fastq> -o <path_to_where_you_want_output_files_sent> -y gzfastq
 ```
 	-P	pair-end reads
 	-c 	clean data, remove any read with an uncalled base
