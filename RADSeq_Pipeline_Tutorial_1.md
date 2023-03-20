@@ -1,6 +1,6 @@
 # RADSeq Pipeline Tutorial #1
 
-###Signing into server
+### Signing into server
 1. Sign into Cisco Anywhere Client (VPN)
 2. Sign into server using your terminal program of choice (i.e. iTerm)
 
@@ -10,7 +10,7 @@ ssh username@servername.hpc.uidaho.edu
 
 *  	Then enter password
 
-###Basic Data Analysis
+### Basic Data Analysis
 Within your directory, create a 0-RAW folder. Skip this step if you already have one.
 
 ```{bash}
@@ -102,7 +102,8 @@ PCR can stochasticaly amplify one of the alleles more than the other, sometimes 
 module load stacks
 clone_filter -P -p <path_to_flipped_R1andR2_fastq_files> -i fastq -o <path_to_output_directory> &> <path_to_output_directory>clone_filter.log
 ```
-###Process_radtags
+
+### Process_radtags
 * Make a new directory for process radtags
 
 ```bash
@@ -143,7 +144,7 @@ process_radtags -P -c -q -e sbfI -b <path_to_barcode-sample>file.txt> -i fastq -
 less process_radtags.log
 ```
 
-###Alignments
+### Alignments
 * Make a directory for alignments
 
 ```{bash}
