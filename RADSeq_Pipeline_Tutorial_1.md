@@ -50,7 +50,7 @@ fastqc <filename> #make sure to do for the R1 and R2 files
 mkdir 02_Flipped
 ```
 * Copy the `flip_trim_160301.pl` to this folder using scp or a file transfer program.
-* Create a .txt file containing all the barcodes that you used on the plate and save to this folder. Below is an example. See `All_Barcodes_10122021.txt` file.
+* Create a .txt file containing all the barcodes that you used on the plate and save to this folder. Below is an example. See `All_Barcodes_03202023.txt` file.
 
 ```
 AAACATCG
