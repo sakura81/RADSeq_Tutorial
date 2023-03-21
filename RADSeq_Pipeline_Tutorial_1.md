@@ -85,7 +85,7 @@ cat <filename.fastq> | echo $((`wc -l`/4))
 ```
 * You can now compare what your orignal file had for reads (unflipped version) to the flipped version to determine the loss of reads due to incorrect barcoding issues
 ```
-100 - (((Original_reads - Flipped_reads)/Original_Reds)*100)
+100 - ((Original_reads - Flipped_reads)/Original_Reads)
 ```
 * Make a new directory for PCR duplicate removal using clone_filter in stacks
 
