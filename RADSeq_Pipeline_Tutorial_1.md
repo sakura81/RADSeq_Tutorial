@@ -100,7 +100,7 @@ PCR can stochasticaly amplify one of the alleles more than the other, sometimes 
 
 ```{bash}
 module load stacks
-clone_filter -P -p <path_to_flipped_R1andR2_fastq_files> -i fastq -o <path_to_output_directory> &> <path_to_output_directory>clone_filter.log
+clone_filter -P -1 <path_to_flipped_R1.fastq> -2 <path_to_flipped_R2.fastq> -i fastq -y fastq -o <path_to_output_directory> &> <path_to_output_directory>clone_filter.log
 ```
 
 ### Process_radtags
