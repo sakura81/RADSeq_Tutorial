@@ -165,7 +165,11 @@ bowtie2-build <genome_file_name.fna> <index-name>
 
 
 * Use `cd` to get to your directory containing the `align2ref.sh` file.  If not already there, use scp or file transfer program to copy to `05_Alignment/ProjectName` folder.  Make sure to edit the file with your project's file path and directory names before running.
+* Make sure the `align2ref.sh` file is executable (usually a different color in your terminal vs the files).  To do this:
 
+```{bash}
+chmod +x align2ref.sh
+```
 * Run alignment script
 
 ```{bash}
