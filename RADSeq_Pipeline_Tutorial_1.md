@@ -150,10 +150,10 @@ less process_radtags.log
 ```{bash}
 mkdir 05_Alignments
 ```
-* Within the 05_Alignments create another directory containing your reference genomes and one containing your project name.
+* Within the 05_Alignments create another directory containing your reference genomes for your project.
 
 ```{bash}
-mkdir Reference_Genomes ProjectName
+mkdir Reference_Genomes
 ```
 * Determine which refrence genome you want to align your data to and download the .fna or .fa version.  Using scp or file transfer program, copy the .fa or .fna genome file into this folder
 * Build index of genome using the following command:
