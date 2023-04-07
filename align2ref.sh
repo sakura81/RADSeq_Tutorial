@@ -1,35 +1,42 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-projhome=<path to home directory>
+##make sure to run this file in your folder that has your index reference genome that you will be aligning to
+proc=~/Consulting_Projects/Eaker_Deer/03_processrad ##input directory for process_rad sample files
+al_out=~/Consulting_Projects/Eaker_Deer/04_Alignment ## output directory
+bowtie_db=Odocoileus_hemionus ##change to your index name
 
-proc=$projhome/04_processrad ## these are your clone_filtered, demultiplexed reads
-al_out=$projhome/05_Alignments/<Project_Name> ## output directory
-mkdir -p $al_out ## make a directory to hold the output if it doesn't already exist
+##change file names below to your sample names.  You can pull from you samples/barcodes file
+files="MYZY6
+MYZY7
+MYZY8
+MYZY9
+MYZYA
+MYZYB
+MYZYC
+MYZYD
+MYZYE
+MYZYF
+MYZYG
+MYZYH
+MYZYI
+MYZYJ
+MYZYK
+MYZYK_R"
 
 module load bowtie2 ## I use bowtie2, you can use bwa or another aligner
 module load samtools ## samtools converts to bam and sorts our alignments
 
-# You already made indices from your reference genome
-#bowtie2-build <reference>.fa <index-name>
-bowtie_db=$projhome/05_Alignments/Reference_Genomes/<index-name>
+echo 'Aligning samples to' $bowtie_db > $al_out/bowtie.log
 
-samples=$(ls $proc/*rem.1.fq.gz) ## make a list of samples to loop through
+for file in $files; 
+do
+        echo 'Aligning' $file
 
-rm $al_out/bowtie.log
-
-echo 'Aligning samps to' $bowtie_db > $al_out/bowtie.log
-
-for i in $samples; do
-        samp=$(echo $i | cut -d / -f 7 | cut -f 1 -d .)
-        echo 'Aligning' $samp
-
-        echo $samp >> $al_out/bowtie.log
+        echo ${file} >> $al_out/bowtie.log
 
         ## I use --very-sensitive because divergent spp
-        bowtie2 --very-sensitive -x $bowtie_db \
-         -1 $proc/${samp}.1.fq.gz -2 $proc/${samp}.2.fq.gz \
-        -S $al_out/${samp}.sam 2>> $al_out/bowtie.log
-         samtools view -b $al_out/${samp}.sam | samtools sort --threads 8 \
-         -o $al_out/${samp}.bam
+        #change the -x Odocoileus_hemionus to your index name
+        bowtie2 --very-sensitive -x Odocoileus_hemionus -1 $proc/${file}.1.fq.gz -2 $proc/${file}.2.fq.gz -S $al_out/${file}.sam 2>>$al_out/bowtie.log
+        samtools view -b $al_out/${file}.sam | samtools sort --threads 8 -o $al_out/${file}.bam
 
 done
