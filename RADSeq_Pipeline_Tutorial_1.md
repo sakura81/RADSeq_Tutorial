@@ -155,7 +155,7 @@ mkdir 05_Alignments
 ```{bash}
 mkdir Reference_Genomes
 ```
-* Determine which refrence genome you want to align your data to and download the .fna or .fa version.  Using scp or file transfer program, copy the .fa or .fna genome file into this folder
+* Determine which reference genome you want to align your data to and download the .fna or .fa version.  Using scp or file transfer program, copy the .fa or .fna genome file into this folder
 * Build index of genome using the following command:
 
 ```{bash}
@@ -163,8 +163,16 @@ module load bowtie2
 bowtie2-build <genome_file_name.fna> <index-name>
 ```
 
+* Youl will now need to decide if you will run your alignments on the standalone servers or the cluster.  If you don't have very many files to run (<30), I would run on the standalone server.  If you have a large number of files (i.e. 2 plates worth), I would run on the cluster server.  They will use two different versions of the align2ref files so make sure you use the right one.
 
-* Use `cd` to get to your directory containing the `align2ref.sh` file.  If not already there, use scp or file transfer program to copy to `05_Alignment/ProjectName` folder.  Make sure to edit the file with your project's file path and directory names before running.
+* STANDALONE SERVER OPTION
+
+* Place the `align2ref.sh` file into `05_Alignment/Reference_Genomes` folder.  Make sure to edit the following locations before running
+* 	proc= <path to your process_rad fastq files for each sample>
+	al_out= <path to your output directory>
+	bowtie_db= <index name of refernce genome you built in steps above>
+	-x in bowtie2 command - change to the index name from above for your reference genome>
+	
 * Make sure the `align2ref.sh` file is executable (usually a different color in your terminal vs the files).  To do this:
 
 ```{bash}
@@ -175,4 +183,7 @@ chmod +x align2ref.sh
 ```{bash}
 align2ref.sh
 ```
+	
+* CLUSTER SERVER OPTION
+	
 ### Proceed to RADSeq Tutorial #2 for refernce aligned SNP genotyping
