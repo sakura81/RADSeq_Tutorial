@@ -192,12 +192,12 @@ ls *.rem.1.fq.gz|cut -d / -f 7 | cut -f 1 -d . |cut -d_ -f1 > ~/05_Alignments/Re
 ```
 * Now go to your	`~/05_Alignments/Reference_Genomes` folder and confirm that the `job` file is there.
 * Upload the `align2ref.slurm` files into your `Reference_Genomes` folder.  Make sure to edit the following locations in the scrip:
-	* `#SBATCH --mail-user = <your email address>
+	 #SBATCH --mail-user = <your email address>
 	 projhome= ~/Consulting_Projects/Swift_Fox ##This is your project directory if you made one or it ca be '~'
 	 proc=$projhome/04_processrad ## these are your clone_filtered, demultiplexed reads
 	 al_out=$projhome/05_Alignment ## output directory
 	 bowtie_db= <index name of refernce genome you built in steps above>
-	 -x in bowtie2 command - change to the index name from above for your reference genome>`
+	 -x in bowtie2 command - change to the index name from above for your reference genome>
 * Now sign into the cluster server
 ```{bash}
 ssh username@fortyfive.hpc.uidaho.edu
