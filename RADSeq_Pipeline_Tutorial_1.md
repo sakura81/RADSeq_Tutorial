@@ -186,29 +186,29 @@ align2ref.sh
 	
 ** CLUSTER SERVER OPTION
 
-* First, generate a file jobs for the tasks by using the following command in your "~/04_processrad" folder
+* First, generate a file jobs for the tasks by using the following command in your `~/04_processrad` folder
 ```{bash}
 ls *.rem.1.fq.gz|cut -d / -f 7 | cut -f 1 -d . |cut -d_ -f1 > ~/05_Alignments/Reference_Genomes/jobs
 ```
-* Now go to your	'~/05_Alignments/Reference_Genomes' folder and confirm that the 'job' file is there.
-* Upload the align2ref.slurm files into your 'Reference_Genomes' folder.  Make sure to edit the following locations in the scrip:
-	* '#SBATCH --mail-user = <your email address>'
-	* 'projhome= ~/Consulting_Projects/Swift_Fox' ##This is your project directory if you made one or it ca be '~'
-	* 'proc=$projhome/04_processrad' ## these are your clone_filtered, demultiplexed reads
-	* 'al_out=$projhome/05_Alignment' ## output directory
-	* 'bowtie_db= <index name of refernce genome you built in steps above>'
-	* '-x in bowtie2 command - change to the index name from above for your reference genome>'
+* Now go to your	`~/05_Alignments/Reference_Genomes` folder and confirm that the `job` file is there.
+* Upload the `align2ref.slurm` files into your `Reference_Genomes` folder.  Make sure to edit the following locations in the scrip:
+	* `#SBATCH --mail-user = <your email address>`
+	* `projhome= ~/Consulting_Projects/Swift_Fox ##This is your project directory if you made one or it ca be '~'`
+	* `proc=$projhome/04_processrad ## these are your clone_filtered, demultiplexed reads`
+	* `al_out=$projhome/05_Alignment ## output directory`
+	* `bowtie_db= <index name of refernce genome you built in steps above>`
+	* `-x in bowtie2 command - change to the index name from above for your reference genome>'
 * Now sign into the cluster server
 ```{bash}
 ssh username@fortyfive.hpc.uidaho.edu
 ```
 * Enter your password
-* Move to your '05_Alignments/Reference_Genomes' folder
+* Move to your `05_Alignments/Reference_Genomes` folder
 * To begin running the file you will need to know how many samples are in your jobn file.  You can determine this by:
 ```{bash}
 wc -l jobs
 ```	
-To submit your job.  n= the # of samples in your job file:
+To submit your job.  n = the # of samples in your job file:
 ```{bash}
 sbacth -a 1-n align2ref.slurm
 ```
@@ -216,7 +216,7 @@ sbacth -a 1-n align2ref.slurm
 ```{bash}
 squeue --me
 ```
-* You should see 'n' jobs running and the length of time it has been running for.  Your files will be located in your '05_Alignments' folder.  There will be a '.sam' and a '.bam' file for each sample.
+* You should see `n` jobs running and the length of time it has been running for.  Your files will be located in your `05_Alignments` folder.  There will be a `.sam` and a `.bam` file for each sample.
 *You should receive an email once your job starts as well as when it finishes.  This will still take a lot of time (~10-12 hours)
 
 ### Proceed to RADSeq Tutorial #2 for refernce aligned SNP genotyping
