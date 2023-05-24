@@ -212,7 +212,7 @@ wc -l jobs
 ```	
 To submit your job.  n = the # of samples in your job file:
 ```{bash}
-sbacth -a 1-n align2ref.slurm
+sbatch -a 1-n align2ref.slurm
 ```
 * The system will provide your with a job #.  You can check to make sure that your job is running by using
 ```{bash}
