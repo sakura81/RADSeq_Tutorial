@@ -31,7 +31,7 @@ do
         echo ${names[${SLURM_ARRAY_TASK_ID}]} >> $al_out/bowtie.log
 
         ## I use --very-sensitive because divergent spp
-        bowtie2 --very-sensitive -x Vulpes_vulpes -1 $proc/${names[${SLURM_ARRAY_TASK_ID}]}.1.fq.gz -2 $proc/${names[${SLURM_ARRAY_TASK_ID}]}.2.fq.gz -S $al_out/sam/${names[${SLURM_ARRAY_TASK_ID}]}.sam 2>>$al_out/SFbowtie.log
+        bowtie2 --very-sensitive -x Vulpes_vulpes -1 $proc/${names[${SLURM_ARRAY_TASK_ID}]}.1.fq.gz -2 $proc/${names[${SLURM_ARRAY_TASK_ID}]}.2.fq.gz -S $al_out/sam/${names[${SLURM_ARRAY_TASK_ID}]}.sam 
         samtools view -b $al_out/sam/${names[${SLURM_ARRAY_TASK_ID}]}.sam | samtools sort --threads 8 -o $al_out/bam/${names[${SLURM_ARRAY_TASK_ID}]}.bam
 
 done
