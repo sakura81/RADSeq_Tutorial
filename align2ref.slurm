@@ -6,7 +6,7 @@
 
 cd $SLURM_SUBMIT_DIR
 
-projhome=~/Consulting_Projects/Swift_Fox
+projhome=/mnt/lfs2/staceyn/Consulting_Projects/Swift_Fox
 proc=$projhome/04_processrad ## these are your clone_filtered, demultiplexed reads
 al_out=$projhome/05_Alignment ## output directory
 
@@ -22,15 +22,16 @@ bowtie_db=Vulpes_vulpes
 names=($(cat jobs))
 echo ${names[${SLURM_ARRAY_TASK_ID}]}
 
-echo 'Aligning samples to' $bowtie_db > $al_out/bowtie.log
+#echo 'Aligning samples to $bowtie_db > $al_out/bowtie.log
 
-for i in $samples; do
-        echo 'Aligning' $names
+for i in $names; 
+do
+        echo 'Aligning' ${names[${SLURM_ARRAY_TASK_ID}]}
 
         echo ${names[${SLURM_ARRAY_TASK_ID}]} >> $al_out/bowtie.log
 
         ## I use --very-sensitive because divergent spp
-        bowtie2 --very-sensitive -x Vulpes_vulpes -1 $proc/${names[${SLURM_ARRAY_TASK_ID}]}.1.fq.gz -2 $proc/${names[${SLURM_ARRAY_TASK_ID}]}.2.fq.gz -S $al_out/sam/${file}.sam 2>>$al_out/bowtie.log
+        bowtie2 --very-sensitive -x Vulpes_vulpes -1 $proc/${names[${SLURM_ARRAY_TASK_ID}]}.1.fq.gz -2 $proc/${names[${SLURM_ARRAY_TASK_ID}]}.2.fq.gz -S $al_out/sam/${names[${SLURM_ARRAY_TASK_ID}]}.sam 2>>$al_out/SFbowtie.log
         samtools view -b $al_out/sam/${names[${SLURM_ARRAY_TASK_ID}]}.sam | samtools sort --threads 8 -o $al_out/bam/${names[${SLURM_ARRAY_TASK_ID}]}.bam
 
 done
